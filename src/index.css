@@ -1,3 +1,12 @@
 .jumbotron h1, p {
   text-align: center;
 }
+
+.pokemonList .thumbnail {
+  cursor: pointer;
+  text-align: center;
+}
+
+.pokemonList .thumbnail:hover {
+  background-color: #e3e3e3;
+}
