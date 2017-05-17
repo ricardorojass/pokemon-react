@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Col } from 'react-bootstrap';
 import axios from 'axios';
+import store from '../store';
 
 const imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/";
+
 class PokemonList extends Component {
   constructor() {
     super();
@@ -28,7 +30,7 @@ class PokemonList extends Component {
       <div className="pokemonList">
         {this.state.pokemon.map(pokemon =>
           <Col md={3}>
-            <div className="thumbnail" key={pokemon.url}>
+            <div className="thumbnail" key={pokemon.url} onClick={() => this.showModal(pokemon) } >
               <img src={imgUrl + pokemon.url.slice(-2).replace('/', '') + ".png"} alt={pokemon.name} />
               <div className="caption">
                 <h4>{pokemon.name}</h4>
@@ -38,6 +40,13 @@ class PokemonList extends Component {
         )}
       </div>
     );
+  }
+
+  showModal(pokemon) {
+    store.dispatch({
+      type: "SHOW_MODAL",
+      pokemon
+    });
   }
 }
 
