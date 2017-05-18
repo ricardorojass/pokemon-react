@@ -10,14 +10,14 @@ class PokemonList extends Component {
     super();
 
     this.state = {
-      pokemon: []
+      pokemonArray: []
     }
 
     axios.get("http://pokeapi.co/api/v2/pokemon/?offset=0")
       .then(response => {
         console.log(response.data.results);
         this.setState({
-          pokemon: response.data.results
+          pokemonArray: response.data.results
         })
       })
       .catch(error => {
@@ -28,7 +28,7 @@ class PokemonList extends Component {
   render() {
     return (
       <div className="pokemonList">
-        {this.state.pokemon.map(pokemon =>
+        {this.state.pokemonArray.map(pokemon =>
           <Col md={3}>
             <div className="thumbnail" key={pokemon.url} onClick={() => this.showModal(pokemon) } >
               <img src={imgUrl + pokemon.url.slice(-2).replace('/', '') + ".png"} alt={pokemon.name} />

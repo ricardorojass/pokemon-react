@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 
 const reducer = (state, action) => {
   if (action.type === "SHOW_MODAL") {
-    console.log(state.showModal);
+    console.log(action.pokemon.name);
     return {
       ...state,
       showModal: state.showModal = true,

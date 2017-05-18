@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import store from '../store';
 
 class PokemonModal extends Component {
@@ -12,24 +12,26 @@ class PokemonModal extends Component {
     };
 
     store.subscribe(() => {
-      console.log(store.getState());
+      // console.log(store.getState());
       this.setState({
-        showModal: store.getState().showModal
+        showModal: store.getState().showModal,
         pokemon: store.getState().pokemon
       });
     });
 
-    close() {
-      this.setState({
-        showModal: false
-      });
-    }
+    this.close = this.close.bind(this);
+  }
 
-    open() {
-      this.setState({
-        showModal: true
-      });
-    }
+  open() {
+    this.setState({
+      showModal: true
+    });
+  }
+
+  close() {
+    this.setState({
+      showModal: false
+    });
   }
 
   render() {
@@ -41,17 +43,7 @@ class PokemonModal extends Component {
           </Modal.Header>
           <Modal.Body>
             <h4>Text in a modal</h4>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
 
-            <h4>Popover in a modal</h4>
-            <p>there is a <OverlayTrigger overlay={popover}><a href="#">popover</a></OverlayTrigger> here</p>
-
-            <h4>Tooltips in a modal</h4>
-            <p>there is a <OverlayTrigger overlay={tooltip}><a href="#">tooltip</a></OverlayTrigger> here</p>
-
-            <hr />
-
-            <h4>Overflowing text to show scroll behavior</h4>
             <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
             <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
           </Modal.Body>
@@ -63,3 +55,5 @@ class PokemonModal extends Component {
     );
   }
 }
+
+export default PokemonModal;
